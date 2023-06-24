@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from '../../redux/operations';
-import { selectIsLoading, selectVisibleContacts } from '../../redux/selectors';
+import { deleteContact } from '../../redux/contacts/operations';
+import {
+  selectIsLoading,
+  selectVisibleContacts,
+} from '../../redux/contacts/selectors';
 import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
 import css from './ContactList.module.css';

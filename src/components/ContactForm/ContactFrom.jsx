@@ -2,9 +2,9 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
 import { nanoid } from '@reduxjs/toolkit';
-import { addContact } from '../../redux/operations';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContact } from '../../redux/contacts/operations';
 
 export default function ContactForm() {
   const [contact, setContact] = useState({
