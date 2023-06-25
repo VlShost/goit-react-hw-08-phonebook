@@ -4,9 +4,15 @@ import {
   selectIsLoading,
   selectVisibleContacts,
 } from '../../redux/contacts/selectors';
-import Loader from 'components/Loader/Loader';
 import PropTypes from 'prop-types';
-import css from './ContactList.module.css';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+  CircularProgress,
+} from '@mui/material';
+import styles from 'components/styles';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -15,22 +21,22 @@ const ContactList = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
-      <ul>
+      <List sx={styles.listWrapper}>
+        {isLoading && <CircularProgress />}
         {!isLoading &&
-          contacts.map(({ id, name, phone }) => (
-            <li key={id}>
-              {name} : {phone}
-              <button
-                className={css.listBtn}
-                type="button"
+          contacts.map(({ id, name, number }) => (
+            <ListItem key={id}>
+              <ListItemText primary={`${name} : ${number}`} />
+              <Button
+                variant="contained"
+                color="secondary"
                 onClick={() => dispatch(deleteContact(id))}
               >
                 Delete
-              </button>
-            </li>
+              </Button>
+            </ListItem>
           ))}
-      </ul>
+      </List>
     </>
   );
 };

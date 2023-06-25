@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { selectContacts } from 'redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/operations';
+import { Box, TextField, Button, Typography } from '@mui/material';
+import styles from 'components/styles';
 
 export default function ContactForm() {
   const [contact, setContact] = useState({
     name: '',
-    phone: '',
+    number: '',
   });
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
@@ -30,51 +31,51 @@ export default function ContactForm() {
       alert(`"${contact.name}" is already in contacts.`);
       return;
     } else {
-      dispatch(addContact({ id, name: contact.name, phone: contact.phone }));
+      dispatch(addContact({ id, name: contact.name, number: contact.number }));
     }
 
     setContact({
       name: '',
-      phone: '',
+      number: '',
     });
   };
 
   return (
-    <form className={css.contactForm} onSubmit={handleSubmit}>
-      <label className={css.contactLabel}>
-        Name
-        <input
-          className={css.contactInput}
+    <>
+      <Typography variant="h4" sx={styles.contactsTitle}>
+        Add contacts
+      </Typography>
+
+      <Box component="form" onSubmit={handleSubmit} sx={styles.contactsWrapper}>
+        <TextField
+          label="Name"
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
           value={contact.name}
           onChange={handleInputChange}
+          sx={{ marginBottom: '1rem' }}
         />
-      </label>
-      <label className={css.contactLabel}>
-        Phone
-        <input
-          className={css.contactInput}
+        <TextField
+          label="Number"
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          value={contact.phone}
+          value={contact.number}
           onChange={handleInputChange}
+          sx={{ marginBottom: '1rem' }}
         />
-      </label>
-      <button className={css.contactBtn} type="submit">
-        Add contact
-      </button>
-    </form>
+        <Button type="submit" variant="contained">
+          Add contact
+        </Button>
+      </Box>
+    </>
   );
 }
 
 ContactForm.propTypes = {
   name: PropTypes.string,
-  number: PropTypes.number,
+  number: PropTypes.string,
 };

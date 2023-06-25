@@ -11,7 +11,7 @@ const handlePending = state => {
 const handleRejected = (state, action) => {
   return {
     ...state,
-    isLoading: true,
+    isLoading: false,
     error: action.payload,
   };
 };

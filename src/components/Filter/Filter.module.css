@@ -1,9 +1,0 @@
-.filterLabel {
-  display: flex;
-  flex-direction: column;
-}
-.filterInput {
-  width: 200px;
-  margin-top: 10px;
-  border-radius: 4px;
-}

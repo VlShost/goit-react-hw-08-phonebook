@@ -5,13 +5,13 @@ import { BrowserRouter } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { store, persistor } from 'redux/store';
-import Loader from 'components/Loader/Loader';
+import { CircularProgress } from '@mui/material';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={<Loader />} persistor={persistor}>
+      <PersistGate loading={<CircularProgress />} persistor={persistor}>
         <BrowserRouter basename="/goit-react-hw-08-phonebook">
           <App />
         </BrowserRouter>
@@ -19,5 +19,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>
 );
-
-// basename = '/goit-react-hw-08-phonebook';
