@@ -14,7 +14,7 @@ export const Navigation = () => {
         <Link
           component={NavLink}
           to="/"
-          variant="h5"
+          variant="h6"
           underline="hover"
           color={'#ffc300'}
           sx={styles.navBtn}
@@ -26,7 +26,7 @@ export const Navigation = () => {
           <Link
             component={NavLink}
             to="/contacts"
-            variant="h5"
+            variant="h6"
             underline="hover"
             sx={styles.navBtn}
           >

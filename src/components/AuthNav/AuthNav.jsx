@@ -9,7 +9,7 @@ export default function AuthNav() {
         <Link
           component={NavLink}
           to="/signup"
-          variant="h5"
+          variant="h6"
           underline="hover"
           sx={styles.signupBtn}
         >
@@ -19,7 +19,7 @@ export default function AuthNav() {
         <Link
           component={NavLink}
           to="/login"
-          variant="h5"
+          variant="h6"
           underline="hover"
           sx={styles.loginBtn}
         >
